@@ -1,0 +1,48 @@
+@import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+#App {
+    min-height: 100vh;
+} 
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FCF6F5;
+    
+  
+    
+  }
+
+.cat-img {
+    max-width: 350px;
+    border-radius: 2rem;
+    margin: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    margin: 0.5rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    --bs-btn-bg: #dc3545;
+    --bs-btn-border-color: #dc3545;
+    --bs-btn-hover-bg: #dc3545;
+    --bs-btn-hover-border-color: #dc3545;
+    --bs-btn-active-bg: #dc3545;
+    --bs-btn-active-border-color: #dc3545;
+    --bs-btn-disabled-bg: #dc3545;
+    --bs-btn-disabled-border-color: #dc3545;
+}
+
+.options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

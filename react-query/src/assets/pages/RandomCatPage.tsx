@@ -1,4 +1,4 @@
-import { getCatBreed } from "../../services/api"; // Assuming you have this function
+import { getCatBreed } from "../../services/api";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import Alert from "react-bootstrap/Alert";

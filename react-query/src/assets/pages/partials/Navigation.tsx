@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <Navbar expand="md" bg="dark" data-bs-theme="dark">
+    <Navbar expand="md" variant="dark" className="custom-navbar">
       <Container>
         <Navbar.Brand as={Link} to="/">
           React-Query

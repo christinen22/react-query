@@ -7,6 +7,12 @@ export type ICat = {
 
 export type ICatResponse = ICat[]
 
+export type Breed = {
+    id: string
+    name: string
+}
+
+
 export type HN_SearchHit = {
     created_at: string
     title: string

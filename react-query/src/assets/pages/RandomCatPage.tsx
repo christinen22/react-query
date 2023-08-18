@@ -1,88 +1,72 @@
-import { getCatBreed } from "../../services/CatApi";
+import { getCatBreed, getRandomCat } from "../../services/CatApi";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../components/Loading";
-import Alert from "react-bootstrap/Alert";
+import { Breed } from "../../types";
+//import Loading from "../components/Loading";
+//import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import { Alert, ButtonGroup } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { useState } from "react";
 
+const breeds: Breed[] = [
+  { id: "", name: "Any" },
+  { id: "ragd", name: "Ragdoll" },
+  { id: "sibe", name: "Siberian" },
+  { id: "beng", name: "Bengal" },
+  { id: "pers", name: "Persian" },
+  { id: "norw", name: "Norwegian Forest" },
+];
+
 const RandomCatPage = () => {
-  const [breed, setBreed] = useState<string | null>(null);
+  const [breed, setBreed] = useState("");
 
-  const getBreedQueryKey = () => {
-    if (breed) {
-      return ["breed", breed];
-    } else {
-      return ["random-cat"];
-    }
-  };
+  const { data, error, isFetching, refetch } = useQuery({
+    queryKey: ["random-cat", breed],
+    queryFn: () => getCatBreed(breed),
+  });
 
-  const breedQuery = useQuery(
-    getBreedQueryKey(),
-    () => getCatBreed(breed || ""),
-    { enabled: !!breed }
-  );
-
-  const handleBreedClick = (breed: string) => {
-    setBreed(breed);
-    breedQuery.refetch();
-  };
+  if (error) {
+    return <Alert variant="error">No kittycat</Alert>;
+  }
 
   return (
     <>
       <h1>I ❤️ Random Cats</h1>
-      <Container className="options">
-        <Button
-          variant="primary"
-          onClick={() => handleBreedClick("beng")}
-          disabled={breedQuery.isFetching}
-        >
-          I ❤️ Bengals
-        </Button>
+      <Container>
+        <div className="text-center">
+          <div className="mb-3">
+            <Button
+              disabled={isFetching}
+              onClick={() => refetch()}
+              variant="primary"
+            >
+              I ❤️ Cats
+            </Button>
 
+            <ButtonGroup className="ms-2">
+              {breeds.map((breed) => (
+                <Button
+                  key={breed.id}
+                  //disabled={isFetching || breed === breed.id}
+                  onClick={() => setBreed(breed.id)}
+                  variant="primary"
+                >
+                  {breed.name}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </div>
+          {data && <Image className="cat-img" src={data.url} fluid />}
+        </div>
         <Button
           variant="primary"
-          onClick={() => handleBreedClick("ragd")}
-          disabled={breedQuery.isFetching}
+          disabled={isFetching}
+          onClick={() => refetch()}
         >
-          I ❤️ Ragdolls
-        </Button>
-
-        <Button
-          variant="primary"
-          onClick={() => handleBreedClick("norw")}
-          disabled={breedQuery.isFetching}
-        >
-          I ❤️ NoFo
-        </Button>
-
-        <Button
-          variant="primary"
-          onClick={() => setBreed(null)}
-          disabled={breedQuery.isFetching}
-        >
-          I ❤️ all cats
+          New kitty ➡️
         </Button>
       </Container>
-
-      {breedQuery.isError && <Alert variant="warning">Error</Alert>}
-
-      <div>
-        {breedQuery.isFetching ? (
-          <Loading />
-        ) : (
-          <Image src={breedQuery.data?.url} className="cat-img" />
-        )}
-      </div>
-
-      <Button
-        variant="primary"
-        disabled={breedQuery.isFetching}
-        onClick={() => breedQuery.refetch()}
-      >
-        NEXT 😺
-      </Button>
     </>
   );
 };

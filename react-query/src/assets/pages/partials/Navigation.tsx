@@ -19,6 +19,9 @@ const Navigation = () => {
             <Nav.Link as={NavLink} to="/random-cat">
               Random Cat
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/hacker">
+              Search HackerNews
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

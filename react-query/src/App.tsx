@@ -5,6 +5,7 @@ import HomePage from "./assets/pages/HomePage";
 import { Routes, Route } from "react-router-dom";
 import PageNotFound from "./assets/pages/PageNotFound";
 import RandomCatPage from "./assets/pages/RandomCatPage";
+import SearchPage from "./assets/pages/SearchPage";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/random-cat" element={<RandomCatPage />} />
+          <Route path="/hacker" element={<SearchPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Container>

@@ -53,3 +53,4 @@ export const search = async (query: string, page = 0) => {
 export const searchByDate = async (query: string, page = 0) => {
     return get<HN_SearchResponse>(`/search_by_date?query=${query}&tags=story&page=${page}`)
 }
+

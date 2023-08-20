@@ -20,12 +20,6 @@ body {
     margin-top: 1rem;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-
-}
-
 .btn {
     margin: 0.5rem;
     font-weight: bold;
@@ -40,6 +34,14 @@ body {
     --bs-btn-active-border-color: #dc3545;
     --bs-btn-disabled-bg: #dc3545;
     --bs-btn-disabled-border-color: #dc3545;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.new-btn {
+  align-self: center;
 }
 
 .options {
@@ -74,4 +76,9 @@ body {
 
   .btn-group {
     flex-wrap: wrap;
+  }
+
+  h1 {
+    text-align: center;
+    margin: 2rem;
   }

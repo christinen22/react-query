@@ -61,6 +61,7 @@ const RandomCatPage = () => {
         </div>
         <Button
           variant="primary"
+          className="new-btn"
           disabled={isFetching}
           onClick={() => refetch()}
         >

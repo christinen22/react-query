@@ -67,8 +67,6 @@ const SearchPage = () => {
 
       {isError && <Alert variant="warning">{isError}</Alert>}
 
-      {isLoading && <Loading />}
-
       {data && (
         <div id="search-result">
           <p>
